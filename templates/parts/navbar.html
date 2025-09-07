@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bookify — Discover & Reserve</title>
+  <link rel="stylesheet" href="{% static "css/style.css" %}"/>
+</head>
+<body class="page page--home">
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="container nav__inner">
+      <div class="brand">
+        <span class="brand__logo">📚</span>
+        <span class="brand__title">Bookify</span>
+      </div>
+
+      <nav class="nav__links" aria-label="Main navigation">
+        <a href="{% url "pages:index" %}" class="nav__link">Home</a>
+        <a href="#books" class="nav__link">books</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="btn btn--primary">Sign in</button>
+      </div>
+    </div>
+  </header>

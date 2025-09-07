@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main class="container book-detail">
+    <article class="book-detail__inner" id="bookDetailRoot" data-book-id="">
+      <div class="book-detail__visual">
+        <img id="bookCover" src="{{book.photo.url}}" alt="Book cover" loading="lazy">
+      </div>
+      <div class="book-detail__info">
+        <h1 id="bookTitle">{{book.title}}</h1>
+        <h3 id="bookAuthor">{{book.author}}</h3>
+        <p id="bookSummary">
+          {{book.description}}
+        </p>
+        <p class="price" id="bookPrice">Price: ${{book.price}}</p>
+
+        <div class="actions">
+          <button class="reserve-btn btn btn--primary" id="openReserve">Reserve / Rent</button>
+          <a href="{% url "pages:index" %}" class="back-btn btn btn--ghost">← Back to Home</a>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+
+
+</body>
+</html>
+{% endblock content %}

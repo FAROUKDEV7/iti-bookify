@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__text">
+        <h1 class="hero__title">Discover. Reserve. Read.</h1>
+        <p class="hero__subtitle">Modern library experience — rent or reserve books instantly.</p>
+        <div class="hero__cta">
+          <a href="#shelf" class="btn btn--cta">Explore Books</a>
+          <a href="#" class="btn btn--ghost">How it works</a>
+        </div>
+      </div>
+
+      <div class="hero__visual" aria-hidden="true">
+        <div class="cover-stack">
+          <img class="cover-stack__img cover-stack__img--1" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=900&q=60" alt="">
+          <img class="cover-stack__img cover-stack__img--2" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&q=60" alt="">
+          <img class="cover-stack__img cover-stack__img--3" src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=900&q=60" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shelf" class="shelf container">
+    <div class="shelf__header">
+      <h2 class="section-title">Featured Books</h2>
+      <div class="shelf__controls">
+        <select id="filterAvailability" class="select">
+          <option value="all">All</option>
+          <option value="available">Available</option>
+          <option value="rented">Rented</option>
+        </select>
+        <input id="searchInput" class="input" type="search" placeholder="Search by title or author">
+      </div>
+    </div>
+
+
+    <div class="book-grid" id="bookGrid">
+      {% for book in  books%}
+      <article class="book-card" data-id="1" id="books">
+        <div class="book-card__thumb">
+          <img src="{{book.photo.url}}" alt="Sample Book 1" loading="lazy">
+        </div>
+        <div class="book-card__body">
+          <h3 class="book-card__title">{{book.title}}</h3>
+          <p class="book-card__author">{{book.author}}</p>
+          <div class="book-card__meta">
+            {% if book.status == "available" %}
+            <span class="badge">{{book.status}}</span>
+            {% else %}
+            <span class="badge" style="color: red;">{{book.status}}</span>
+            {% endif %}
+            <a class="btn btn--small btn--primary" href="{% url 'pages:book' book.id %}">View</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+
+</body>
+</html>
+{% endblock content %}
