@@ -5,8 +5,20 @@ from .models import Books
 
 # main page
 def index(request):
+    books = Books.objects.all()
+
+    # if you want to filter books with price equal to 500
+    # books = Books.objects.all().filter(price = 500)
+
+    # if you want to filter books with title equal to romantic
+    # books = Books.objects.all().filter(title = "romantic")
+
+    # if you want to order books by title
+    # books = Books.objects.all().order_by('title')
+
+
     context = {
-        'books': Books.objects.all(),
+        'books': books,
     }
     return render(request , 'pages/index.html', context)
 
