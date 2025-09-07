@@ -30,3 +30,5 @@ def book(request ,id):
         'book':book
     }
     return render(request,'pages/book.html',context)
+
+
