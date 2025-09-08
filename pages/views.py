@@ -31,4 +31,8 @@ def book(request ,id):
     }
     return render(request,'pages/book.html',context)
 
+# login page
+def Login(request):
+    return render(request,'pages/login.html')
+
 
