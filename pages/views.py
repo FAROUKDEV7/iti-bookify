@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Books , Login
+from .forms import LoginForm
 # Create your views here.
 
 
@@ -33,10 +34,29 @@ def book(request ,id):
 
 # login page
 def login(request):
-    username= request.POST.get('username')
-    password= request.POST.get('password')
-    data = Login(username=username , password=password)
-    data.save()
-    return render(request,'pages/login.html')
+
+
+    # here error because must be validation for save data or (form)
+
+    # username= request.POST.get('username')
+    # password= request.POST.get('password')
+    # data = Login(username=username , password=password)
+    # data.save()
+
+    # correct way with form
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            data = Login(username=username, password=password)
+            data.save()
+            # You can redirect to a success page or render a success message here
+            return render(request, 'pages/login.html', {'form': LoginForm(), 'success': True})
+        else:
+            # If the form is not valid, re-render the page with existing information.
+            return render(request, 'pages/login.html', {'form': form})
+        
+    return render(request,'pages/login.html' , {'form':LoginForm()})
 
 
