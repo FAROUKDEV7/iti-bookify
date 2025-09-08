@@ -2,6 +2,8 @@ from django.db import models
 
 # Create your models here.
 
+
+# Model for Books
 class Books(models.Model):
     status_book=[
         ('available','available'),
@@ -21,3 +23,16 @@ class Books(models.Model):
     class Meta:
         verbose_name = 'Book'
         verbose_name_plural = 'Books'
+
+
+# Model for Login
+class Login(models.Model):
+    username = models.CharField(max_length=150)
+    password = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.username
+    
+    class Meta:
+        verbose_name = 'Login'
+        verbose_name_plural = 'Logins'
