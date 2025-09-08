@@ -36,27 +36,20 @@ def book(request ,id):
 def login(request):
 
 
-    # here error because must be validation for save data or (form)
+    # here error because must be validation for save data and (form)
 
-    # username= request.POST.get('username')
-    # password= request.POST.get('password')
-    # data = Login(username=username , password=password)
-    # data.save()
+    # LoginForm(request.POST).save()
 
-    # correct way with form
+
+    # correct way for save data with validation
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            data = Login(username=username, password=password)
-            data.save()
-            # You can redirect to a success page or render a success message here
-            return render(request, 'pages/login.html', {'form': LoginForm(), 'success': True})
+            form.save()
+            return render(request,'pages/index.html')
         else:
-            # If the form is not valid, re-render the page with existing information.
-            return render(request, 'pages/login.html', {'form': form})
-        
+            return render(request,'pages/login.html' , {'form':form})
+
     return render(request,'pages/login.html' , {'form':LoginForm()})
 
 
